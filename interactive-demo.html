@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css" media="screen">
+      body { background: #fed; width: 800px; margin: 0 auto; text-align: center; font-family: georgia; }
+      button { margin: 4px; }
+      #align button { width: 110px; }
+      #scalemode button { width: 80px; }
+      button.active { border: 1px solid #800; }
+      h3 { margin: 0.5em 0; }
+      #stage { background: url("test.jpg"); }
+      iframe { width: 800px; height: 400px; border: 0; }
+      pre { background: #eee; padding: 2px 12px; margin: 4px 0 12px; border: 1px solid #bbb; display: inline-block; }
+    </style>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script type="text/javascript">
+        (function($) {
+            $(function() {
+                var win = $('iframe')[0].contentWindow;
+                $('#align button').click(function() { 
+                    $('#align button').removeClass('active');
+                    win.Stage.align = $(this).addClass('active').text();
+                    updateCode();
+                });
+                $('#scalemode button').click(function() { 
+                    $('#scalemode button').removeClass('active');
+                    win.Stage.scaleMode = $(this).addClass('active').text();
+                    updateCode();
+                });
+                function updateCode() {
+                    $('pre').text("Stage.init(640, 480, '" + win.Stage.scaleMode + (win.Stage.align ? "', '" + win.Stage.align : "") + "');");
+                }
+            });
+        })(jQuery);
+    </script>
+  </head>
+  <body>
+    <a href="https://github.com/yonatan/unresponsive.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+    <div id='scalemode'>
+      <h3>ScaleMode</h3>
+      <button>exactFit</button>
+      <button>noBorder</button>
+      <button>noScale</button>
+      <button class='active'>showAll</button>
+    </div>
+
+    <div id='align'>
+      <h3>StageAlign</h3>
+        <div>
+          <button>TL</button>
+          <button>T</button>
+          <button>TR</button>
+        </div>
+        <div>
+          <button>L</button>
+          <button class='active'>C</button>
+          <button>R</button>
+        </div>
+        <div>
+          <button>BL</button>
+          <button>B</button>
+          <button>BR</button>
+        </div>
+      </table>
+    </div>
+
+    <div>
+      <h3>Result</h3>
+      <div><pre>Stage.init(640, 480, 'showAll');</pre></div>
+      <iframe src="minimal-demo.html" />
+    </div>
+  </body>
+</html>
