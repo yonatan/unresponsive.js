@@ -21,3 +21,7 @@ To use it just include unresponsive.js and call Stage.init after DOM load.
 ```
 
 `Stage.init()` takes `width`, `height`, and Flash-style `scaleMode` and `align` arguments. See the [demo](http://zozuar.org/unresponsive.js/interactive-demo.html) for details.
+
+## Browser compatibility
+
+Doesn't work on IE8 or lower.
