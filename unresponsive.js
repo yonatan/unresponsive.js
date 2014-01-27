@@ -1,3 +1,4 @@
+// https://github.com/yonatan/unresponsive.js
 (function(window) {
     'use strict';
     var Stage = window.Stage = {};
